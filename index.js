@@ -82,7 +82,7 @@ function validateEmail(email) {
 }
 
 
-function submitForm(event) {
+async function submitForm(event) {
     event.preventDefault();
     const formData = new FormData($form);
 
@@ -90,19 +90,20 @@ function submitForm(event) {
     const body = formData.get("body");
 
     if (validateEmail(email) && body.trim() !== '') {
-        fetch("index.php", {
+        const response = await fetch("index.php", {
             method: "POST",
             body: formData
         })
-        .then(response => response.text())
-        .then(data => {
-            $mailStatus.classList.add("show-status");
-            if (data) {
-                $mailStatus.textContent = "Mail has been sent";
-                $form.reset();
-            } else {
-                $mailStatus.textContent = "Mail has not been sent";
-            }  
-        });
+        
+        const data = await response.text();
+            
+        $mailStatus.classList.add("show-status");
+
+        if (data) {
+            $mailStatus.textContent = "Mail has been sent";
+            $form.reset();
+        } else {
+            $mailStatus.textContent = "Mail has not been sent";
+        }  
     }
 }
