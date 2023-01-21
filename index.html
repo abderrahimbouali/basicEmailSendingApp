@@ -12,87 +12,37 @@
     />
     <link rel="stylesheet" href="index.css" />
     <title>Document</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: "Roboto", sans-serif;
-        overflow: hidden;
-      }
-
-      .container {
-        width: 35%;
-        height: 50%;
-      }
-
-      form {
-        width: 100%;
-        height: 100%;
-      }
-
-      label {
-        display: block;
-        margin: 30px 0 10px;
-        font-weight: bold;
-      }
-
-      input,
-      textarea,
-      .mail-status {
-        width: 100%;
-        display: block;
-        padding: 10px;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 1px 1px 15px 1px #d3d3d3;
-      }
-
-      input[type="submit"] {
-        width: 50%;
-        margin-left: auto;
-        margin-top: 30px;
-        background-color: #fff;
-        font-weight: bold;
-        cursor: pointer;
-      }
-      .mail-status {
-        position: absolute;
-        bottom: 0;
-        width: 30%;
-        font-weight: bold;
-        text-align: center;
-        transform: translateY(100%);
-      }
-      .show-status {
-        animation: show-status 3s ease-in-out both;
-      }
-      @keyframes show-status {
-        0%,
-        100% {
-          transform: translateY(100%);
-        }
-        25%,
-        75% {
-          transform: translateY(0%);
-        }
-      }
-    </style>
   </head>
 
   <body>
     <div class="container">
       <form action="./index2.php" method="post">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" required />
+        <div class="receiver-data">
+          <div class="email-container">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="xyz@gmail.com"
+              required
+            />
+          </div>
+          <div class="name-container">
+            <label for="name">Name</label>
+            <input
+              type="name"
+              name="name"
+              id="name"
+              placeholder="xyz"
+              required
+            />
+          </div>
+        </div>
+        <label for="subject">Subject</label>
+        <select name="subject">
+          <option value=""></option>
+        </select>
         <label for="body">Body</label>
         <textarea
           name="body"
