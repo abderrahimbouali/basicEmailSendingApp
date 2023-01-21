@@ -14,6 +14,7 @@ $mail = new PHPMailer();
 $from = "testtest1312testtest@gmail.com";
 $password = "eukmkzqkzzrybtjb";
 $to = $_POST["email"];
+$subject = $_POST["subject"];
 $body = $_POST["body"];
 
 try {
@@ -31,7 +32,7 @@ try {
     $mail->setFrom($from, 'Test Mailer');
     $mail->addAddress($to, 'Test Receiver');
 
-    $mail->Subject = 'SMTP Test Subject';
+    $mail->Subject = $subject;
     $mail->Body    = $body;
 
     $mail->send();

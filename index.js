@@ -35,7 +35,7 @@ async function getBody(subject) {
         }    
     });
 
-    return mail.body;
+    return mail?.body;
 }
 
 (async function fillSubjects() {
@@ -57,13 +57,16 @@ $subjects.addEventListener("change", async event => {
     body = dynamicMail(body, "Receiver", $name.value);
     body = dynamicMail(body, "Sender", "Jhon");
     body = dynamicMail(body, "Subject", subject);
+    body = dynamicMail(body, "Date", new Date().toDateString());
+    body = dynamicMail(body, "Time", `${new Date().getHours()}:${new Date().getMinutes()}`);
+    body = dynamicMail(body, "Location", "Bee House Coffe shop");
 
-    $body.value = body;
+    $body.value = body || "";
 
 });
 
 function dynamicMail(body, placeholder, data) {
-    return body.split(`[${placeholder}]`).join(data);
+    return body?.split(`[${placeholder}]`).join(data);
 }
 
 $form.addEventListener("submit", event => {
