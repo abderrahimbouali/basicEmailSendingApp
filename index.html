@@ -26,6 +26,7 @@
         justify-content: center;
         align-items: center;
         font-family: "Roboto", sans-serif;
+        overflow: hidden;
       }
 
       .container {
@@ -45,7 +46,8 @@
       }
 
       input,
-      textarea {
+      textarea,
+      .mail-status {
         width: 100%;
         display: block;
         padding: 10px;
@@ -62,6 +64,27 @@
         font-weight: bold;
         cursor: pointer;
       }
+      .mail-status {
+        position: absolute;
+        bottom: 0;
+        width: 30%;
+        font-weight: bold;
+        text-align: center;
+        transform: translateY(100%);
+      }
+      .show-status {
+        animation: show-status 3s ease-in-out both;
+      }
+      @keyframes show-status {
+        0%,
+        100% {
+          transform: translateY(100%);
+        }
+        25%,
+        75% {
+          transform: translateY(0%);
+        }
+      }
     </style>
   </head>
 
@@ -71,9 +94,18 @@
         <label for="email">Email</label>
         <input type="email" name="email" id="email" required />
         <label for="body">Body</label>
-        <textarea name="body" id="body" cols="60" rows="20" value=""></textarea>
+        <textarea
+          name="body"
+          id="body"
+          cols="60"
+          rows="20"
+          value=""
+          required
+        ></textarea>
         <input type="submit" value="Submit" />
       </form>
     </div>
+    <div class="mail-status"></div>
+    <script src="index.js"></script>
   </body>
 </html>
