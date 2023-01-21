@@ -77,8 +77,8 @@ $body.addEventListener("keydown", event => {
 });
 
 function validateEmail(email) {
-  var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return emailRegex.test(email);
+    const gmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@gmail\.com$/;
+    return gmailRegex.test(email);
 }
 
 
@@ -90,7 +90,7 @@ function submitForm(event) {
     const body = formData.get("body");
 
     if (validateEmail(email) && body.trim() !== '') {
-        fetch("index2.php", {
+        fetch("index.php", {
             method: "POST",
             body: formData
         })
@@ -99,10 +99,10 @@ function submitForm(event) {
             $mailStatus.classList.add("show-status");
             if (data) {
                 $mailStatus.textContent = "Mail has been sent";
+                $form.reset();
             } else {
                 $mailStatus.textContent = "Mail has not been sent";
             }  
-            $form.reset();
         });
     }
 }
